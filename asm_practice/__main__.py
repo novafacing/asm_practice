@@ -1,3 +1,5 @@
+"""CLI driver for asm_practice module."""
+
 from argparse import ArgumentParser
 from pathlib import Path
 
@@ -13,7 +15,10 @@ if __name__ == "__main__":
         "-c",
         type=Path,
         required=True,
-        help="Path to your challenges.py file defining your challenges. For examples, see `asm-practice/examples/`.",
+        help=(
+            "Path to your challenges.py file defining your challenges. "
+            "For examples, see `asm-practice/examples/`."
+        ),
     )
     parser.add_argument(
         "--flag",

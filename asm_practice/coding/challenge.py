@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Callable, List, Optional
+from typing import Callable, Iterable, Optional, Tuple
 
 from qiling import Qiling
 
@@ -23,8 +23,9 @@ class TestCase:
     Specifies the pre and post-conditions for a testcase
     """
 
-    preconditions: List[Callable[[Qiling], None]]
-    postconditions: List[Callable[[Qiling], bool]]
+    codeconditions: Iterable[Tuple[Callable[[str], bool], str]] = ()
+    preconditions: Iterable[Callable[[Qiling], None]] = ()
+    postconditions: Iterable[Tuple[Callable[[Qiling], bool], str]] = ()
 
 
 @dataclass
@@ -34,7 +35,7 @@ class Challenge:
     """
 
     archspec: ArchSpec
-    testcases: List[TestCase]
+    testcases: Iterable[TestCase]
     instructions: str
     secret: Optional[str] = None
     pseudocode: Optional[str] = None

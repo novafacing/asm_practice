@@ -10,18 +10,19 @@ from qiling import Qiling
 
 from asm_practice.coding.helpers import Helpers
 
+
 class Driver:
     """
     Main loop and initialization for challenge driver.
-    
+
     Runs each stage and runs user provided asm, checks it, and gives flags.
     """
 
     def __init__(self, challenge_file: Path, flag: str, secrets: bool = False) -> None:
         """
         Initialize the asm practice driver.
-        
-        :param challenge_file: The path to a python file that defines an iterable of 
+
+        :param challenge_file: The path to a python file that defines an iterable of
             Challenge objects, with each representing a "level" in the game.
         :param flag: The flag to present the player with at the end.
         :param secrets: Whether or not to enable checkpoint secrets that
@@ -39,13 +40,15 @@ class Driver:
     def run(self) -> None:
         """
         Run the game.
-        
+
         For each level, get code from the user, run it, and check each assertion
         on the output state of the system.
         """
 
         if self.secrets:
-            secret = input("Enter a level password or press enter if you don't have one:\n>>> ").strip()
+            secret = input(
+                "Enter a level password or press enter if you don't have one:\n>>> "
+            ).strip()
 
             if secret.strip() == "":
                 pass
@@ -69,9 +72,7 @@ class Driver:
                 print(Helpers.reflow(challenge.instructions))
 
                 if challenge.pseudocode is not None:
-                    print(
-                        Helpers.pseudocode(challenge.pseudocode)
-                    )
+                    print(Helpers.pseudocode(challenge.pseudocode))
 
                 code = Helpers.get_multiline_input()
 
@@ -91,13 +92,21 @@ class Driver:
                 state = ql.save(mem=True, reg=True, fd=True)
 
                 for testcase in challenge.testcases:
+                    for codecondition, msg in testcase.codeconditions:
+                        if not codecondition(code):
+                            print(f"Failed! Reason: {msg}")
+                            exit(1)
+
                     ql.restore(state)
+
                     for precondition in testcase.preconditions:
                         precondition(ql)
+
                     ql.run()
-                    for postcondition in testcase.postconditions:
+
+                    for postcondition, msg in testcase.postconditions:
                         if not postcondition(ql):
-                            print("Failed!")
+                            print(f"Failed! Reason: {msg}")
                             exit(1)
 
                 print(f"Success! Level password is: {challenge.secret}\n")
