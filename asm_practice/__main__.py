@@ -1,11 +1,12 @@
 from argparse import ArgumentParser
 from pathlib import Path
+
 from asm_practice.coding.driver import Driver
 
 if __name__ == "__main__":
     parser = ArgumentParser(
         prog="asm_practice",
-        description="Interactive ASM programming environment for teaching assembly."
+        description="Interactive ASM programming environment for teaching assembly.",
     )
     parser.add_argument(
         "--challenges",
@@ -21,6 +22,14 @@ if __name__ == "__main__":
         required=True,
         help="Flag to be used for challenge.",
     )
+    parser.add_argument(
+        "--secrets",
+        "-s",
+        action="store_true",
+        default=False,
+        help="Whether or not to allow using a secret to jump to a saved level.",
+    )
+
     args = parser.parse_args()
-    driver = Driver(args.challenges, args.flag)
+    driver = Driver(args.challenges, args.flag, args.secrets)
     driver.run()
