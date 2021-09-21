@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "asm"
+version = "0.1.0"
+description = ""
+authors = ["novafacing <rowanbhart@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+pwntools = ">=4.7.0b0"
+qiling = "^1.2.4"
+black = "^21.9b0"
+isort = "^5.9.3"
+Pygments = "^2.10.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
