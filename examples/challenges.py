@@ -31,11 +31,11 @@ challenges.append(
         archspec=amd64,
         instructions="Translate the following pseudocode to asm:",
         pseudocode="""
-if (rax == 0x1337) {
-    rsi = 0x10;
-} else if (rax == 0x1447) {
-    rsi = 0x20;
-}""",
+        if (rax == 0x1337) {
+            rsi = 0x10;
+        } else if (rax == 0x1447) {
+            rsi = 0x20;
+        }""",
         testcases=[
             TestCase(
                 preconditions=[lambda ql: setattr(ql.reg, "rax", 0x1337)],
