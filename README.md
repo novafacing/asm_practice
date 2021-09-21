@@ -26,3 +26,6 @@ What does this do? Probably easiest with an image:
 
 This framework allows you to quickly specify assembly programming environments with one or more starting configurations and end state assertions to test (probably students, but maybe professionals) assembly programming skills.
 
+# Credit
+
+This wasn't my idea, the original idea was [A0su's](https://github.com/A0su) and the first implementation was by [2heen's](https://github.com/2heen). I just wrapped it all up in a nice package.
