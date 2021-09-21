@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "asm"
+name = "asm_practice"
 version = "0.1.0"
 description = ""
 authors = ["novafacing <rowanbhart@gmail.com>"]
