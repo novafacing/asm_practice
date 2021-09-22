@@ -38,7 +38,7 @@ class Helpers:
 
         :param text: The text to reflow.
         """
-        return "\n".join(wrap(text, width=cls.WIDTH))
+        return "\n".join(wrap(cls.dedent(text), width=cls.WIDTH))
 
     @classmethod
     def dedent(cls, text: str) -> str:

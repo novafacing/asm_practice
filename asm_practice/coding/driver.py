@@ -50,7 +50,7 @@ class Driver:
                 "Enter a level password or press enter if you don't have one:\n>>> "
             ).strip()
 
-            if secret.strip() == "":
+            if secret == "":
                 pass
             elif secret not in (*map(lambda c: c.secret, self.challenges),):
                 print("Invalid password.")
