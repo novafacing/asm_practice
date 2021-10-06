@@ -13,7 +13,7 @@ And run `docker-compose up` in the `deploy` directory. You can use the files the
 
 # Installation
 
-`python3 -m pip install git+https://github.com/novafacing/asm_practice.git`
+`python3 -m pip install asm-practice`
 
 Or, you can clone the repository and run it from here.
 
